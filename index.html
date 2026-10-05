@@ -224,12 +224,45 @@
     <div><b>Full Margin</b></div>
     <div id="addr">[mailing address pending]</div>
     <div><a href="mailto:fullmarginbids@gmail.com">fullmarginbids@gmail.com</a></div>
+    <div style="margin-top:8px;font-size:11px">We count anonymous page activity to improve this tool. No personal data, no ads, no third-party trackers.</div>
   </footer>
 </div>
 
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
+  // ---- Full Margin first-party analytics (cookieless, no PII, no network until SINK set) ----
+  var FM=(function(){
+    var SINK="";  // set to a free counter/pixel base URL later; blank = store locally only
+    var KEY="fm_events_v1";
+    function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+    function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+    function vid(){var k="fm_vid";var v=null;try{v=localStorage.getItem(k)}catch(e){}
+      if(!v){v=(Date.now().toString(36)+Math.random().toString(36).slice(2,8));try{localStorage.setItem(k,v)}catch(e){}}
+      return v;}
+    function track(ev,meta){
+      var o=load();o[ev]=(o[ev]||0)+1;o["_last_"+ev]=new Date().toISOString();save(o);
+      if(SINK){try{var i=new Image();i.src=SINK+"?e="+encodeURIComponent(ev)+"&v="+encodeURIComponent(vid())+"&t="+Date.now();}catch(e){}}
+    }
+    return {track:track,dump:function(){return load()},vid:vid};
+  })();
+  window.FM=FM;
+  FM.track("page_view");
+  // calc_start fires once when the user first edits any input
+  var started=false;
+  ["hours","rate","materials","overhead","markup","jobs","target"].forEach(function(id){
+    var el=$(id); if(el){el.addEventListener("focus",function(){if(!started){started=true;FM.track("calc_start")}});}
+  });
+  // offer_view fires once when the kit section is reached (IntersectionObserver + scroll fallback)
+  (function(){var k=$("kit"); if(!k) return; var seen=false;
+    function fire(){if(!seen){seen=true;FM.track("offer_view");window.removeEventListener("scroll",onScroll);}}
+    function onScroll(){var r=k.getBoundingClientRect();if(r.top < (window.innerHeight||document.documentElement.clientHeight)*0.85){fire();}}
+    if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){fire();io.disconnect();}})},{threshold:0.2});io.observe(k);}
+    window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
+  })();
+  // buy_click on either buy button
+  ["buyBtn","buyBtn2"].forEach(function(id){var b=$(id);if(b){b.addEventListener("click",function(){FM.track("buy_click");});}});
+
   var money=function(n){
     return '$'+Math.round(n).toLocaleString('en-US');
   };
@@ -256,6 +289,8 @@
     var onTarget = perJob<=0;                   // already hitting target
     if(onTarget) perJob=0;
     var perYear = perJob*jobs*12;
+    FM.track("calc_complete");
+    FM.track(onTarget ? "result_ontarget" : "result_loss");
 
     $('rCost').textContent=money(cost);
     $('rPrice').textContent=money(price);
