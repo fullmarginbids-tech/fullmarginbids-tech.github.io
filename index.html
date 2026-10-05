@@ -250,8 +250,8 @@
     var cost=direct*(1+overhead/100);          // true job cost incl overhead
     var price=cost*(1+markup/100);             // what they charge
     var realMargin=price>0?((price-cost)/price*100):0;  // true margin %
-    // price needed to ACTUALLY earn THEIR target margin
-    var targetPrice = target<100 ? cost/(1-target/100) : price;
+    // price needed to ACTUALLY earn THEIR target margin (guard unrealistic targets >=90%)
+    var targetPrice = target>=90 ? price : (target<100 ? cost/(1-target/100) : price);
     var perJob = targetPrice - price;          // money left on table per job
     var onTarget = perJob<=0;                   // already hitting target
     if(onTarget) perJob=0;
