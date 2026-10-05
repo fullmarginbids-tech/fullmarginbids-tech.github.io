@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Margin Calculator — Full Margin</title>
+<meta name="description" content="Most contractors price at a markup and think it's their margin. It isn't. See the gap, and what it costs you per year. Free, no email required.">
+<style>
+  :root{
+    --ink:#1a2230; --muted:#5b6678; --line:#e3e7ee; --bg:#f6f8fb;
+    --card:#ffffff; --accent:#1f5fdb; --accent-dk:#1a4fb8;
+    --good:#0f8a52; --warn:#b4341f; --warnbg:#fdf0ed;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.5;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+  header{padding:8px 0 4px}
+  .brand{font-weight:700;font-size:15px;letter-spacing:.2px;color:var(--ink)}
+  .brand span{color:var(--accent)}
+  h1{font-size:25px;line-height:1.22;margin:14px 0 8px;letter-spacing:-.3px}
+  .sub{color:var(--muted);font-size:15.5px;margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 16px;box-shadow:0 1px 2px rgba(20,30,50,.04)}
+  label{display:block;font-weight:600;font-size:14.5px;margin:14px 0 6px}
+  label .hint{display:block;font-weight:400;color:var(--muted);font-size:12.5px;margin-top:2px}
+  .field{position:relative}
+  .field .pre,.field .post{position:absolute;top:0;height:48px;display:flex;align-items:center;
+    color:var(--muted);font-size:16px;pointer-events:none}
+  .field .pre{left:13px}
+  .field .post{right:13px}
+  input[type=number]{
+    width:100%;height:48px;border:1px solid var(--line);border-radius:10px;
+    font-size:16px;padding:0 14px;background:#fff;color:var(--ink);-webkit-appearance:none;
+  }
+  input.pad-l{padding-left:26px}
+  input.pad-r{padding-right:30px}
+  input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,95,219,.12)}
+  .btn{display:block;width:100%;border:0;border-radius:11px;background:var(--accent);
+    color:#fff;font-size:17px;font-weight:700;height:52px;margin-top:20px;cursor:pointer}
+  .btn:active{background:var(--accent-dk)}
+  .note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:10px}
+
+  /* result */
+  #result{display:none;margin-top:18px}
+  .rhead{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:0 0 4px}
+  .bignum{font-size:40px;font-weight:800;letter-spacing:-1px;line-height:1.05;color:var(--warn)}
+  .bignum.good{color:var(--good)}
+  .rsub{color:var(--muted);font-size:14.5px;margin-top:6px}
+  .rows{margin:16px 0 4px;border-top:1px solid var(--line)}
+  .row{display:flex;justify-content:space-between;align-items:baseline;
+    padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .row .k{color:var(--muted)}
+  .row .v{font-weight:700;font-variant-numeric:tabular-nums}
+  .v.warn{color:var(--warn)}
+  .gapline{background:var(--warnbg);border:1px solid #f3d6cf;border-radius:10px;
+    padding:12px 14px;margin-top:14px;font-size:14.5px;color:#7a2416}
+  .gapline b{color:var(--warn)}
+  .gapline.good{background:#eaf7f0;border-color:#c5e8d5;color:#0c5c38}
+  .gapline.good b{color:var(--good)}
+
+  .offer{margin-top:18px;background:#0f1726;border-radius:var(--radius);padding:20px 18px;color:#eaf0fb}
+  .offer h2{margin:0 0 6px;font-size:21px;letter-spacing:-.2px}
+  .offer p{margin:0 0 4px;color:#b7c3da;font-size:14.5px}
+  .offer .price{font-weight:800;color:#fff}
+  .buy{display:block;text-align:center;width:100%;background:#2f80ff;color:#fff;
+    text-decoration:none;font-weight:700;font-size:17px;height:52px;line-height:52px;
+    border-radius:11px;margin-top:14px}
+  .buy:active{background:#2168d8}
+  .guarantee{font-size:13px;color:#9fb0cd;margin-top:12px;line-height:1.45}
+  .restart{display:block;background:none;border:0;color:var(--accent);font-size:14px;
+    margin:16px auto 0;cursor:pointer;text-decoration:underline}
+
+  footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted);line-height:1.6}
+  footer a{color:var(--muted)}
+
+  /* offer section */
+  .kit{margin-top:34px}
+  .kit-h{font-size:23px;letter-spacing:-.3px;margin:0 0 6px}
+  .kit-sub{color:var(--muted);font-size:15px;margin:0 0 18px}
+  .stack{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:6px 16px;box-shadow:0 1px 2px rgba(20,30,50,.04)}
+  .stack-row{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+  .stack-row:last-child{border-bottom:0}
+  .stack-row .si{flex:0 0 26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;
+    font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .stack-row b{display:block;font-size:15.5px;margin-bottom:2px}
+  .stack-row span:not(.si){display:block;color:var(--muted);font-size:13.5px;line-height:1.45}
+  .guarantee-box{margin-top:16px;background:#eaf7f0;border:1px solid #c5e8d5;border-radius:var(--radius);padding:16px 18px}
+  .guarantee-box b{color:var(--good);font-size:16px}
+  .guarantee-box p{margin:6px 0 0;color:#0c5c38;font-size:14px;line-height:1.5}
+  .buy{display:block;text-align:center;width:100%;background:var(--accent);color:#fff;
+    text-decoration:none;font-weight:700;font-size:17px;height:52px;line-height:52px;
+    border-radius:11px;margin-top:18px}
+  .buy:active{background:var(--accent-dk)}
+  .buy-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:9px}
+  .faq-h{font-size:19px;margin:28px 0 10px}
+  .faq .qa{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;margin-bottom:9px}
+  .faq .qa b{font-size:14.5px}
+  .faq .qa p{margin:5px 0 0;color:var(--muted);font-size:13.5px;line-height:1.5}
+  .faq .qa a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Full<span>Margin</span></div>
+  </header>
+
+  <h1>Your markup isn't your margin. See the gap.</h1>
+  <p class="sub">Most contractors add 25% and think they're keeping 25%. You're not. Plug in one typical job and see what it's really costing you. Free. No email needed.</p>
+
+  <div class="card" id="calc">
+    <form id="form" novalidate>
+      <label>Labor hours on the job
+        <span class="hint">Total hours you'll put into it</span>
+        <div class="field"><input type="number" id="hours" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 16"></div>
+      </label>
+
+      <label>Labor rate ($/hour)
+        <span class="hint">What the hour costs YOU (wage + burden), not what you bill</span>
+        <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="rate" inputmode="decimal" min="0" step="1" placeholder="e.g. 45"></div>
+      </label>
+
+      <label>Material cost ($)
+        <span class="hint">Your cost for parts and materials</span>
+        <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="materials" inputmode="decimal" min="0" step="1" placeholder="e.g. 600"></div>
+      </label>
+
+      <label>Overhead (%)
+        <span class="hint">Truck, insurance, phone, software, spread across jobs</span>
+        <div class="field"><input class="pad-r" type="number" id="overhead" inputmode="decimal" min="0" step="1" placeholder="e.g. 10"><span class="post">%</span></div>
+      </label>
+
+      <label>Markup you normally add (%)
+        <span class="hint">The number you tack on to get your price</span>
+        <div class="field"><input class="pad-r" type="number" id="markup" inputmode="decimal" min="0" step="1" placeholder="e.g. 25"><span class="post">%</span></div>
+      </label>
+
+      <label>Jobs per month
+        <span class="hint">Roughly how many of these you do</span>
+        <div class="field"><input type="number" id="jobs" inputmode="numeric" min="0" step="1" placeholder="e.g. 12"></div>
+      </label>
+
+      <label>What profit margin are you aiming for? (%)
+        <span class="hint">The margin you actually want to keep</span>
+        <div class="field"><input class="pad-r" type="number" id="target" inputmode="decimal" min="0" step="1" placeholder="e.g. 25" value="25"><span class="post">%</span></div>
+      </label>
+
+      <button type="submit" class="btn">Show my true margin</button>
+      <p class="note">Nothing is saved. Nothing is sent. The math runs on your phone.</p>
+    </form>
+  </div>
+
+  <div id="result">
+    <div class="card">
+      <p class="rhead" id="rhead">You're aiming for 25%. You're actually making 20%.</p>
+      <div class="bignum" id="perYear">$0</div>
+      <p class="rsub" id="perYearSub">a year on the table.</p>
+
+      <div class="rows">
+        <div class="row"><span class="k">Your job cost (with overhead)</span><span class="v" id="rCost">$0</span></div>
+        <div class="row"><span class="k">What you charge now</span><span class="v" id="rPrice">$0</span></div>
+        <div class="row"><span class="k">Margin you're aiming for</span><span class="v" id="rTarget">0%</span></div>
+        <div class="row"><span class="k">Margin you ACTUALLY make</span><span class="v warn" id="rReal">0%</span></div>
+        <div class="row"><span class="k">Short per job</span><span class="v warn" id="rPerJob">$0</span></div>
+      </div>
+
+      <div class="gapline" id="gapline">
+        A <b id="gMarkup">25%</b> markup is only a <b id="gMargin">20%</b> margin. To actually hit the <b id="gWant">25%</b> margin you're aiming for, you'd need to charge <b id="gExtra">$0</b> more on this job.
+      </div>
+    </div>
+
+    <div class="offer" id="offer">
+      <h2 id="offerH">The Bid-to-Win Kit fixes this.</h2>
+      <p id="offerP">Proposal templates, a scope checklist, the markup-to-margin calculator, follow-up scripts, and a bonus price-raise script. So your next bid keeps what you meant to keep.</p>
+      <p class="price">$97, one time. Instant download.</p>
+      <a class="buy" id="buyBtn" href="#REPLACE_WITH_GUMROAD_LINK">Get the Bid-to-Win Kit — $97</a>
+      <p class="guarantee">Use it on your next 3 bids. If it doesn't add $500 in margin across them, email us for a full refund and keep the kit.</p>
+    </div>
+
+    <button class="restart" id="restart">Run it again with different numbers</button>
+  </div>
+
+  <!-- ALWAYS-VISIBLE OFFER SECTION -->
+  <section class="kit" id="kit">
+    <h2 class="kit-h">The Bid-to-Win Kit</h2>
+    <p class="kit-sub">Everything you need to stop underpricing and start winning bids at a margin that actually pays you. One-time $97. Instant download.</p>
+
+    <div class="stack">
+      <div class="stack-row"><span class="si">1</span><div><b>3 proposal templates</b><span>Service call, small project, and larger project bid. Fill in the blanks and send.</span></div></div>
+      <div class="stack-row"><span class="si">2</span><div><b>Scope-of-work checklist</b><span>The line items contractors forget, then eat. Now with HVAC and plumbing sections.</span></div></div>
+      <div class="stack-row"><span class="si">3</span><div><b>Markup &amp; margin calculator</b><span>The full spreadsheet version. Type a job, see your true margin and what you're leaving on the table.</span></div></div>
+      <div class="stack-row"><span class="si">4</span><div><b>5 follow-up scripts</b><span>Email and text, for bids that go quiet. Most bids aren't lost, they're forgotten.</span></div></div>
+      <div class="stack-row"><span class="si">5</span><div><b>Bonus: price-raise script</b><span>Raise rates on existing customers without losing them.</span></div></div>
+      <div class="stack-row"><span class="si">6</span><div><b>Quick-start guide</b><span>Run the whole kit on your next 5 bids. No fluff.</span></div></div>
+    </div>
+
+    <div class="guarantee-box">
+      <b>The $500 guarantee</b>
+      <p>Use the kit on your next 3 bids. If it doesn't add at least $500 in margin across them, email us for a full refund — and keep the kit. We only win if you do.</p>
+    </div>
+
+    <a class="buy" id="buyBtn2" href="#REPLACE_WITH_GUMROAD_LINK">Get the Bid-to-Win Kit — $97</a>
+    <p class="buy-note">Instant download. Opens in Word/Excel and Google Docs/Sheets.</p>
+
+    <h2 class="faq-h">Questions</h2>
+    <div class="faq">
+      <div class="qa"><b>Is this a subscription?</b><p>No. One payment of $97, yours to keep. No recurring charges.</p></div>
+      <div class="qa"><b>Do I need special software?</b><p>No. The documents open in Microsoft Word and Excel, or free in Google Docs and Google Sheets. Just upload them to Google Drive.</p></div>
+      <div class="qa"><b>I'm not an electrician. Does it still work?</b><p>Yes. It's built for owner-operated electrical, HVAC, and plumbing shops. The pricing math and templates work for any of the three.</p></div>
+      <div class="qa"><b>What if it doesn't help?</b><p>Use it on 3 bids. If it doesn't add $500 in margin, email us for a full refund and keep the kit.</p></div>
+      <div class="qa"><b>How do I get it?</b><p>Instant download right after checkout. No waiting, no sales call.</p></div>
+      <div class="qa"><b>Questions before you buy?</b><p>Email <a href="mailto:fullmarginbids@gmail.com">fullmarginbids@gmail.com</a>. We read every one.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div><b>Full Margin</b></div>
+    <div id="addr">[mailing address pending]</div>
+    <div><a href="mailto:fullmarginbids@gmail.com">fullmarginbids@gmail.com</a></div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var money=function(n){
+    return '$'+Math.round(n).toLocaleString('en-US');
+  };
+  var pct=function(n){return (Math.round(n*10)/10)+'%'};
+
+  $('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var hours=parseFloat($('hours').value)||0;
+    var rate=parseFloat($('rate').value)||0;
+    var materials=parseFloat($('materials').value)||0;
+    var overhead=parseFloat($('overhead').value)||0;
+    var markup=parseFloat($('markup').value)||0;
+    var jobs=parseFloat($('jobs').value)||0;
+    var target=parseFloat($('target').value)||0;
+
+    var labor=hours*rate;
+    var direct=labor+materials;
+    var cost=direct*(1+overhead/100);          // true job cost incl overhead
+    var price=cost*(1+markup/100);             // what they charge
+    var realMargin=price>0?((price-cost)/price*100):0;  // true margin %
+    // price needed to ACTUALLY earn THEIR target margin
+    var targetPrice = target<100 ? cost/(1-target/100) : price;
+    var perJob = targetPrice - price;          // money left on table per job
+    var onTarget = perJob<=0;                   // already hitting target
+    if(onTarget) perJob=0;
+    var perYear = perJob*jobs*12;
+
+    $('rCost').textContent=money(cost);
+    $('rPrice').textContent=money(price);
+    $('rTarget').textContent=pct(target);
+    $('rReal').textContent=pct(realMargin);
+    $('rPerJob').textContent=money(perJob);
+    $('perYear').textContent=money(perYear);
+
+    var big=$('perYear');
+    var realCell=$('rReal');
+    var perJobCell=$('rPerJob');
+    if(onTarget){
+      // Honest on-target path: no invented loss
+      big.classList.add('good');
+      realCell.classList.remove('warn');
+      perJobCell.classList.remove('warn');
+      $('rhead').textContent="You're aiming for "+pct(target)+". You're actually making "+pct(realMargin)+".";
+      $('perYearSub').textContent="You're on target.";
+      $('gapline').className='gapline good';
+      $('gapline').innerHTML="Your "+pct(markup)+" markup gives you a "+pct(realMargin)+" margin, which meets the "+pct(target)+" you're aiming for. No gap here.";
+      $('offerH').textContent="Win more bids at this margin.";
+      $('offerP').textContent="You're priced right. The Bid-to-Win Kit helps you close more of these jobs without discounting: proposal templates, a scope checklist, follow-up scripts, and a bonus price-raise script.";
+    }else{
+      big.classList.remove('good');
+      realCell.classList.add('warn');
+      perJobCell.classList.add('warn');
+      $('rhead').textContent="You're aiming for "+pct(target)+". You're actually making "+pct(realMargin)+".";
+      $('perYearSub').textContent="That's "+money(perYear)+" a year"+(jobs>0?" at "+jobs+" jobs a month.":".");
+      $('gapline').className='gapline';
+      $('gMarkup').textContent=pct(markup);
+      $('gMargin').textContent=pct(realMargin);
+      $('gWant').textContent=pct(target);
+      $('gExtra').textContent=money(perJob);
+      $('gapline').innerHTML="A <b>"+pct(markup)+"</b> markup is only a <b>"+pct(realMargin)+"</b> margin. To actually hit the <b>"+pct(target)+"</b> margin you're aiming for, you'd need to charge <b>"+money(perJob)+"</b> more on this job.";
+      $('offerH').textContent="The Bid-to-Win Kit fixes this.";
+      $('offerP').textContent="Proposal templates, a scope checklist, the markup-to-margin calculator, follow-up scripts, and a bonus price-raise script. So your next bid keeps what you meant to keep.";
+    }
+
+    $('calc').style.display='none';
+    $('result').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  $('restart').addEventListener('click',function(){
+    $('result').style.display='none';
+    $('calc').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
