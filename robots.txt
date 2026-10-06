@@ -1,0 +1,40 @@
+# Full Margin — robots.txt
+# We WANT search engines AND AI answer engines to read and cite us. Everything is allowed.
+
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI / answer-engine crawlers (so we can appear in ChatGPT, Perplexity,
+# Gemini, Claude, and AI Overviews). None are blocked.
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Amazonbot
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://fullmarginbids-tech.github.io/sitemap.xml
