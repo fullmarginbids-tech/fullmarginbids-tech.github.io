@@ -523,7 +523,7 @@
   <div class="foot-in">
     <div>
       <div class="foot-brand"><span class="mk"></span>Full&nbsp;<span>Margin</span></div>
-      <div class="foot-fine" style="margin-top:12px">This page keeps an anonymous, on-device tally of activity (stored only in your browser) so we can see which parts help. No accounts, no personal data, no ads, no third-party trackers, nothing sent to a server.</div>
+      <div class="foot-fine" style="margin-top:12px">The calculator runs entirely on your device: your job numbers are never saved or sent anywhere. This page keeps an anonymous, cookieless tally of activity in your browser (no accounts, no personal data, no ads, no third-party trackers). If you start a checkout, our payment processor (Stripe) receives only what's needed to take payment, plus an anonymous campaign tag and random visitor id so we can tell which message brought you.</div>
     </div>
     <div class="foot-meta">
       <div id="addr">PO Box 18, Novelty, OH 44072</div>
@@ -539,18 +539,23 @@
 
   // ---- Full Margin first-party analytics (cookieless, no PII, on-device only until SINK set) ----
   var FM=(function(){
-    var SINK="";  // blank = store locally only; no network request is made
+    var SINK="";  // blank = on-device only; set to a first-party endpoint to centralize visits/calc (privacy-safe, no PII)
     var KEY="fm_events_v1";
+    function qp(n){try{return new URLSearchParams(location.search).get(n)}catch(e){return null}}
     function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
     function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
     function vid(){var k="fm_vid";var v=null;try{v=localStorage.getItem(k)}catch(e){}
       if(!v){v=(Date.now().toString(36)+Math.random().toString(36).slice(2,8));try{localStorage.setItem(k,v)}catch(e){}}
       return v;}
+    function src(){var k="fm_src";var s=null;try{s=localStorage.getItem(k)}catch(e){}
+      var cur=(qp("src")||qp("utm_source"));
+      if(cur){s=cur.replace(/[^A-Za-z0-9._-]/g,"").slice(0,40);try{localStorage.setItem(k,s)}catch(e){}}
+      return s||"direct";}
     function track(ev,meta){
       var o=load();o[ev]=(o[ev]||0)+1;o["_last_"+ev]=new Date().toISOString();save(o);
-      if(SINK){try{var i=new Image();i.src=SINK+"?e="+encodeURIComponent(ev)+"&v="+encodeURIComponent(vid())+"&t="+Date.now();}catch(e){}}
+      if(SINK){try{var i=new Image();i.src=SINK+"?e="+encodeURIComponent(ev)+"&v="+encodeURIComponent(vid())+"&s="+encodeURIComponent(src())+"&t="+Date.now();}catch(e){}}
     }
-    return {track:track,dump:function(){return load()},vid:vid};
+    return {track:track,dump:function(){return load()},vid:vid,src:src};
   })();
   window.FM=FM;
   FM.track("page_view");
@@ -574,8 +579,12 @@
     if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){fire();io.disconnect();}})},{threshold:0.2});io.observe(k);}
     window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
   })();
-  // buy_click on either buy button
-  ["buyBtn","buyBtn2"].forEach(function(id){var b=$(id);if(b){b.addEventListener("click",function(){FM.track("buy_click");});}});
+  // buy_click on either buy button; append anonymous campaign tag + random id to the Stripe link for source attribution
+  ["buyBtn","buyBtn2"].forEach(function(id){var b=$(id);if(b){b.addEventListener("click",function(){
+    FM.track("buy_click");
+    try{var base=b.getAttribute("href").split("?")[0];
+      b.setAttribute("href", base+"?client_reference_id="+encodeURIComponent(FM.src()+"."+FM.vid()));}catch(e){}
+  });}});
 
   var money=function(n){ return '$'+Math.round(n).toLocaleString('en-US'); };
   var pct=function(n){return (Math.round(n*10)/10)+'%'};
