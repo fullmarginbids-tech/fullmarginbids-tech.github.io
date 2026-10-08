@@ -38,7 +38,7 @@
         {"@type": "Question", "name": "What is the difference between markup and margin?", "acceptedAnswer": {"@type": "Answer", "text": "Markup is the percentage you add on top of your cost to set your price. Margin is the percentage of the final price that is profit. They are not the same: a 25% markup only equals a 20% margin. Example: a $1,000 cost marked up 25% sells for $1,250, and the $250 profit is 20% of that $1,250 price, a 20% margin, not 25%."}},
         {"@type": "Question", "name": "What profit margin should an electrician aim for?", "acceptedAnswer": {"@type": "Answer", "text": "Many owner-operated electrical, HVAC, and plumbing shops aim for a net margin in the range of roughly 10 to 20 percent after overhead, but the right number depends on your overhead, labor burden, and market. The important step is to price from a margin target, not a markup number, because adding a 25% markup leaves you short of a 25% margin."}},
         {"@type": "Question", "name": "How do you price an electrical job?", "acceptedAnswer": {"@type": "Answer", "text": "Add your true job cost (labor hours times your loaded labor rate, plus materials, plus a share of overhead), then set a price that hits your target profit margin rather than tacking on a flat markup. A markup understates the price you need, so calculate from the margin you actually want to keep."}},
-        {"@type": "Question", "name": "Is the Full Margin calculator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The markup vs margin calculator is free, needs no email, and runs entirely in your browser. Nothing is saved or sent."}},
+        {"@type": "Question", "name": "Is the Full Margin calculator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The markup vs margin calculator is free, needs no email, and runs entirely in your browser. Your job numbers are not saved or sent anywhere."}},
         {"@type": "Question", "name": "What is the Bid-to-Win Kit?", "acceptedAnswer": {"@type": "Answer", "text": "A one-time $97 download for owner-operated electrical, HVAC, and plumbing contractors: three proposal templates, a scope-of-work checklist, a markup and margin calculator, five follow-up scripts, and a bonus price-raise script. It comes with a guarantee: use it on your next three bids within 60 days and if it does not add at least $500 in margin, email for a full refund and keep the kit."}}
       ]
     }
@@ -85,25 +85,29 @@
     -webkit-backdrop-filter:saturate(120%) blur(10px);backdrop-filter:saturate(120%) blur(10px);
     border-bottom:1px solid transparent;transition:border-color .2s}
   .nav.scrolled{border-bottom-color:var(--line)}
-  .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
   .brand{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:-.01em;color:var(--ink);display:flex;align-items:center;gap:10px;text-decoration:none}
   .brand .mk{width:9px;height:9px;background:var(--accent);border-radius:1px;transform:rotate(45deg)}
   .brand span{font-style:italic}
-  .nav-cta{font-family:var(--sans);font-weight:600;font-size:13.5px;text-decoration:none;color:var(--ink);
-    border:1px solid var(--line-2);background:transparent;padding:9px 16px;border-radius:999px;white-space:nowrap;transition:border-color .15s, background .15s}
+  .nav-cta{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-family:var(--sans);font-weight:600;font-size:13.5px;text-decoration:none;color:var(--ink);
+    border:1px solid var(--line-2);background:transparent;padding:0 17px;border-radius:999px;white-space:nowrap;transition:border-color .15s, background .15s}
   .nav-cta:hover{border-color:var(--ink);background:var(--card)}
   .nav-cta b{color:var(--accent);font-weight:600}
 
   /* ---------- hero ---------- */
-  .hero{padding:68px 0 48px}
-  .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:64px;align-items:start}
-  h1{font-size:clamp(36px,5.6vw,58px);line-height:1.04;margin:22px 0 0;font-weight:500}
+  .hero{padding:60px 0 48px}
+  .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;column-gap:64px;row-gap:34px;align-items:start;
+    grid-template-areas:"copy tool" "extra tool"}
+  .hero-copy{grid-area:copy}
+  .tool{grid-area:tool}
+  .hero-extra{grid-area:extra}
+  h1{font-size:clamp(34px,5.4vw,56px);line-height:1.05;margin:20px 0 0;font-weight:500}
   h1 em{font-style:italic;color:var(--accent);font-weight:500}
-  .lede{color:var(--ink-2);font-size:clamp(16.5px,2.1vw,19px);line-height:1.52;margin:22px 0 0;max-width:36ch}
-  .assure{margin:24px 0 0;font-size:13.5px;color:var(--muted);letter-spacing:.01em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0}
+  .lede{color:var(--ink-2);font-size:clamp(16.5px,2.1vw,19px);line-height:1.52;margin:20px 0 0;max-width:38ch}
+  .assure{margin:0;font-size:13.5px;color:var(--muted);letter-spacing:.01em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px 0}
   .assure b{color:var(--ink-2);font-weight:600}
-  .steps{margin:30px 0 0;padding:0;list-style:none;display:grid;gap:0;max-width:34ch}
-  .steps li{display:flex;gap:16px;align-items:baseline;padding:14px 0;color:var(--ink-2);font-size:15px;border-bottom:1px solid var(--line)}
+  .steps{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:0;max-width:40ch}
+  .steps li{display:flex;gap:16px;align-items:baseline;padding:13px 0;color:var(--ink-2);font-size:15px;border-bottom:1px solid var(--line)}
   .steps li:last-child{border-bottom:0}
   .steps .n{font-family:var(--serif);font-weight:500;font-style:italic;font-size:17px;color:var(--accent);flex:0 0 26px}
 
@@ -111,13 +115,12 @@
   .tool{position:relative}
   .card{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-lg)}
   .tool .card{padding:0;overflow:hidden}
-  .tool-head{padding:18px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--inset)}
+  .tool-head{padding:17px 26px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:var(--inset)}
   .tool-head .t{font-family:var(--serif);font-weight:600;font-size:17px}
-  .tool-head .tag{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
-  .tool-head .tag .lv{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .tool-head .t2{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted)}
   .tool-body{padding:4px 26px 26px}
   form{margin:0}
-  .fgroup{padding:18px 0 8px;border-bottom:1px solid var(--line)}
+  .fgroup{padding:18px 0 10px;border-bottom:1px solid var(--line)}
   .fgroup:last-of-type{border-bottom:0}
   .fgroup > .leg{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin:0 0 4px}
   label{display:block;font-weight:600;font-size:14px;margin:16px 0 8px;color:var(--ink)}
@@ -139,7 +142,10 @@
   input.pad-r{padding-right:36px}
   input:hover{border-color:var(--rule)}
   input:focus{outline:none;border-color:var(--accent);background:var(--card);box-shadow:inset 0 -2px 0 var(--accent)}
+  input.invalid{border-color:var(--loss);background:#fdf6f3;box-shadow:inset 0 -2px 0 var(--loss)}
   .field:focus-within .pre, .field:focus-within .post{color:var(--accent)}
+  .ferr{display:block;color:var(--loss);font-size:12.5px;font-weight:600;margin-top:7px;line-height:1.35}
+  .ferr:empty{display:none}
   .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:1px solid var(--ink);border-radius:var(--r-sm);
     background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:16px;font-weight:600;height:54px;margin-top:26px;
     cursor:pointer;transition:background .15s, transform .04s}
@@ -155,15 +161,15 @@
   @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   .result-card{padding:28px 26px}
   .rhead{font-family:var(--sans);font-size:13.5px;font-weight:600;letter-spacing:0;color:var(--muted);margin:0 0 14px;text-wrap:pretty}
-  .bignum{font-family:var(--serif);font-size:clamp(46px,10vw,62px);font-weight:500;letter-spacing:-.02em;line-height:.98;color:var(--loss);font-variant-numeric:tabular-nums}
+  .bignum{font-family:var(--serif);font-size:clamp(44px,9.5vw,60px);font-weight:500;letter-spacing:-.02em;line-height:.98;color:var(--loss);font-variant-numeric:tabular-nums}
   .bignum.good{color:var(--gain)}
-  .rsub{color:var(--muted);font-size:14.5px;margin-top:10px}
+  .rsub{color:var(--muted);font-size:14px;margin-top:10px;line-height:1.5;max-width:42ch}
 
   /* comparison measure — two flat ruled bars */
   .compare{margin:26px 0 2px;display:grid;gap:16px}
   .cbar-row{display:grid;gap:8px}
   .cbar-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-  .cbar-label{font-size:12.5px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
+  .cbar-label{font-size:12px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
   .cbar-val{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--ink)}
   .cbar-val.warn{color:var(--loss)}
   .cbar-val.good{color:var(--gain)}
@@ -182,6 +188,8 @@
   .gapline b{color:var(--loss);font-weight:700}
   .gapline.good{background:var(--gain-soft);border-color:#bcd6c6;color:#0f4d37}
   .gapline.good b{color:var(--gain)}
+  .assume{font-size:12px;color:var(--faint);line-height:1.6;margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}
+  .assume b{color:var(--muted);font-weight:600}
 
   .offer{margin-top:18px;background:var(--ink);border-radius:var(--r-lg);padding:28px 26px;color:#efe9db}
   .offer h2{font-family:var(--serif);font-size:23px;font-weight:500;letter-spacing:-.01em;margin:0 0 8px;color:#fdfaf2}
@@ -190,7 +198,7 @@
   .offer .price .amt{font-family:var(--serif);font-size:24px;font-weight:500}
   .offer .price .sep{color:#6f6757}
   .buy{display:flex;align-items:center;justify-content:center;gap:9px;text-align:center;width:100%;
-    background:var(--paper);color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;height:54px;
+    background:var(--paper);color:var(--ink);text-decoration:none;font-weight:600;font-size:16px;min-height:54px;
     border-radius:var(--r-sm);margin-top:20px;transition:background .15s, transform .04s}
   .buy:hover{background:#fff}
   .buy:active{transform:translateY(1px)}
@@ -198,16 +206,16 @@
   .offer .guarantee{font-size:13px;color:#97917f;margin-top:16px;line-height:1.5;display:flex;gap:9px;align-items:flex-start}
   .offer .guarantee svg{width:15px;height:15px;flex:0 0 15px;margin-top:2px;color:#6fae8e}
   .restart{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--accent);
-    font-family:var(--sans);font-size:14px;font-weight:600;margin:20px auto 0;cursor:pointer;padding:9px}
+    font-family:var(--sans);font-size:14px;font-weight:600;margin:20px auto 0;cursor:pointer;padding:10px;min-height:44px}
   .restart svg{width:15px;height:15px}
   .restart-wrap{text-align:center}
 
   /* ---------- offer / kit section ---------- */
-  .section{padding:84px 0;border-top:1px solid var(--line)}
-  .section-head{max-width:44ch;margin:0 0 38px}
+  .section{padding:66px 0;border-top:1px solid var(--line)}
+  .section-head{max-width:46ch;margin:0 0 34px}
   .section-head .kicker{margin-bottom:18px}
-  .kit-h{font-family:var(--serif);font-size:clamp(30px,4.2vw,42px);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
-  .kit-sub{color:var(--ink-2);font-size:17px;margin:16px 0 0;max-width:50ch;line-height:1.55}
+  .kit-h{font-family:var(--serif);font-size:clamp(29px,4vw,40px);font-weight:500;line-height:1.06;margin:0;letter-spacing:-.01em}
+  .kit-sub{color:var(--ink-2);font-size:17px;margin:16px 0 0;max-width:52ch;line-height:1.55}
   .stack{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
   .stack-row{display:flex;gap:16px;align-items:flex-start;padding:22px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card);transition:background .15s}
   .stack-row:hover{background:var(--inset)}
@@ -215,7 +223,14 @@
   .stack-row b{display:block;font-size:15.5px;margin-bottom:4px;font-weight:600;color:var(--ink)}
   .stack-row span:not(.si){display:block;color:var(--muted);font-size:13.5px;line-height:1.5}
 
-  .guarantee-box{margin-top:30px;background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);
+  /* real "look inside" previews */
+  .peek-lead{font-size:14px;color:var(--muted);margin:30px 0 14px}
+  .peek{display:grid;grid-template-columns:repeat(2,minmax(0,260px));gap:20px}
+  .peek figure{margin:0}
+  .peek img{width:100%;height:auto;display:block;border:1px solid var(--line-2);border-radius:var(--r-sm);background:#fff;box-shadow:0 1px 0 var(--line)}
+  .peek figcaption{font-size:12px;color:var(--faint);margin-top:9px}
+
+  .guarantee-box{margin-top:32px;background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);
     padding:26px 28px;display:flex;gap:22px;align-items:center}
   .seal{flex:0 0 64px;height:64px;border-radius:50%;background:transparent;border:1.5px solid var(--accent);
     display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent)}
@@ -224,7 +239,7 @@
   .guarantee-box .gt{font-family:var(--serif);font-weight:600;color:var(--ink);font-size:18px;margin:0 0 4px}
   .guarantee-box p{margin:0;color:var(--ink-2);font-size:14px;line-height:1.55}
 
-  .buybar{margin-top:32px;background:var(--ink);border-radius:var(--r);
+  .buybar{margin-top:30px;background:var(--ink);border-radius:var(--r);
     padding:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
   .buybar .bp{display:flex;flex-direction:column;gap:5px}
   .buybar .bp .big{font-family:var(--serif);font-weight:500;font-size:26px;color:#fdfaf2}
@@ -236,7 +251,7 @@
   /* ---------- faq ---------- */
   .faq{display:grid;gap:0;max-width:780px;border-top:1px solid var(--line)}
   .faq details{border-bottom:1px solid var(--line)}
-  .faq summary{list-style:none;cursor:pointer;padding:19px 2px;font-weight:600;font-size:15.5px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink)}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 2px;font-weight:600;font-size:15.5px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);min-height:44px}
   .faq summary::-webkit-details-marker{display:none}
   .faq summary .ic{flex:0 0 16px;width:16px;height:16px;color:var(--faint);transition:transform .2s, color .2s}
   .faq details[open] summary .ic{transform:rotate(45deg);color:var(--accent)}
@@ -244,33 +259,41 @@
   .faq details > p a{color:var(--accent)}
 
   /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--line-2);margin-top:0;padding:48px 0 56px;background:var(--paper)}
+  footer{border-top:1px solid var(--line-2);margin-top:0;padding:46px 0 54px;background:var(--paper)}
   .foot-in{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-start}
   .foot-brand{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--ink);display:flex;align-items:center;gap:10px}
   .foot-brand .mk{width:8px;height:8px;background:var(--accent);transform:rotate(45deg)}
   .foot-brand span{font-style:italic}
   .foot-meta{font-size:13px;color:var(--muted);line-height:1.8}
   .foot-meta a{color:var(--muted)}
-  .foot-fine{font-size:11.5px;color:var(--faint);max-width:44ch;line-height:1.65}
+  .foot-fine{font-size:11.5px;color:var(--faint);max-width:48ch;line-height:1.65}
 
   /* ---------- responsive ---------- */
   @media (max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:38px}
-    .hero{padding:44px 0 26px}
+    .hero-grid{grid-template-columns:1fr;grid-template-areas:"copy" "tool" "extra";row-gap:30px}
+    .hero{padding:38px 0 26px}
     .lede,.steps{max-width:none}
-    .section{padding:60px 0}
+    .section{padding:54px 0}
   }
   @media (max-width:620px){
     .stack{grid-template-columns:1fr;border-left:0}
     .stack-row{border-right:0}
+    .peek{grid-template-columns:1fr 1fr;gap:12px}
     .buybar{flex-direction:column;align-items:stretch}
     .buybar .buy{width:100%}
-    .tool-body{padding:4px 18px 22px}
-    .tool-head{padding:16px 18px}
-    .result-card{padding:24px 18px}
-    .wrap{padding:0 20px}
-    .foot-in{padding:0 20px}
-    .guarantee-box{padding:22px;gap:18px}
+    .tool-body{padding:4px 17px 22px}
+    .tool-head{padding:15px 17px}
+    .result-card{padding:22px 17px}
+    .wrap{padding:0 18px}
+    .foot-in{padding:0 18px}
+    .guarantee-box{padding:20px;gap:16px}
+  }
+  @media (max-width:380px){
+    .wrap{padding:0 14px}
+    h1{font-size:30px}
+    .tool-head,.tool-body{padding-left:14px;padding-right:14px}
+    .peek{grid-template-columns:1fr}
+    .peek{grid-template-columns:repeat(2,1fr)}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -297,13 +320,7 @@
       <div class="hero-copy">
         <p class="kicker"><span class="kr"></span>Free margin check · 60 seconds</p>
         <h1>Your markup isn't your margin. <em>See the gap.</em></h1>
-        <p class="lede">Add 25% and think you're keeping 25%? You're not. Plug in one typical job and see your real number, and what the difference costs you in a year.</p>
-        <p class="assure"><b>No email required.</b> Nothing saved or sent. Runs on your phone.</p>
-        <ol class="steps">
-          <li><span class="n">01</span><span>Enter one job you'd actually bid.</span></li>
-          <li><span class="n">02</span><span>See the margin you really make vs. the one you're aiming for.</span></li>
-          <li><span class="n">03</span><span>See what the gap costs you across a year.</span></li>
-        </ol>
+        <p class="lede">Add 25% and think you're keeping 25%? You're not. Enter one typical job below and see your real number, and what the difference costs you in a year.</p>
       </div>
 
       <div class="tool">
@@ -311,64 +328,71 @@
         <div class="card" id="calc">
           <div class="tool-head">
             <div class="t">Margin calculator</div>
-            <div class="tag"><span class="lv"></span>Live · on-device</div>
+            <div class="t2">Free · no sign-up</div>
           </div>
           <div class="tool-body">
             <form id="form" novalidate>
               <div class="fgroup">
                 <p class="leg">The job</p>
-                <label>Labor hours on the job
-                  <span class="hint">Total hours you'll put into it</span>
-                  <div class="field"><input type="number" id="hours" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 16"></div>
+                <label for="hours">Labor hours on the job
+                  <span class="hint" id="h-hours">Total hours you'll put into it</span>
+                  <div class="field"><input type="number" id="hours" inputmode="decimal" min="0" step="0.5" placeholder="e.g. 16" aria-describedby="h-hours e-hours"></div>
+                  <span class="ferr" id="e-hours" aria-live="polite"></span>
                 </label>
-                <label>Labor rate ($/hour)
-                  <span class="hint">What the hour costs YOU (wage + burden), not what you bill</span>
-                  <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="rate" inputmode="decimal" min="0" step="1" placeholder="e.g. 45"></div>
+                <label for="rate">Labor rate ($/hour)
+                  <span class="hint" id="h-rate">What the hour costs YOU (wage + burden), not what you bill</span>
+                  <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="rate" inputmode="decimal" min="0" step="1" placeholder="e.g. 45" aria-describedby="h-rate e-rate"></div>
+                  <span class="ferr" id="e-rate" aria-live="polite"></span>
                 </label>
-                <label>Material cost ($)
-                  <span class="hint">Your cost for parts and materials</span>
-                  <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="materials" inputmode="decimal" min="0" step="1" placeholder="e.g. 600"></div>
+                <label for="materials">Material cost ($)
+                  <span class="hint" id="h-materials">Your cost for parts and materials (0 if none)</span>
+                  <div class="field"><span class="pre">$</span><input class="pad-l" type="number" id="materials" inputmode="decimal" min="0" step="1" placeholder="e.g. 600" aria-describedby="h-materials e-materials"></div>
+                  <span class="ferr" id="e-materials" aria-live="polite"></span>
                 </label>
               </div>
 
               <div class="fgroup">
                 <p class="leg">Your pricing</p>
-                <label>Overhead (%)
-                  <span class="hint">Truck, insurance, phone, software, spread across jobs</span>
-                  <div class="field"><input class="pad-r" type="number" id="overhead" inputmode="decimal" min="0" step="1" placeholder="e.g. 10"><span class="post">%</span></div>
+                <label for="overhead">Overhead (%)
+                  <span class="hint" id="h-overhead">Truck, insurance, phone, software, spread across jobs</span>
+                  <div class="field"><input class="pad-r" type="number" id="overhead" inputmode="decimal" min="0" step="1" placeholder="e.g. 10" aria-describedby="h-overhead e-overhead"><span class="post">%</span></div>
+                  <span class="ferr" id="e-overhead" aria-live="polite"></span>
                 </label>
-                <label>Markup you normally add (%)
-                  <span class="hint">The number you tack on to get your price</span>
-                  <div class="field"><input class="pad-r" type="number" id="markup" inputmode="decimal" min="0" step="1" placeholder="e.g. 25"><span class="post">%</span></div>
+                <label for="markup">Markup you normally add (%)
+                  <span class="hint" id="h-markup">The number you tack on to get your price</span>
+                  <div class="field"><input class="pad-r" type="number" id="markup" inputmode="decimal" min="0" step="1" placeholder="e.g. 25" aria-describedby="h-markup e-markup"><span class="post">%</span></div>
+                  <span class="ferr" id="e-markup" aria-live="polite"></span>
                 </label>
               </div>
 
               <div class="fgroup">
                 <p class="leg">Your target</p>
-                <label>Jobs per month
-                  <span class="hint">Roughly how many of these you do</span>
-                  <div class="field"><input type="number" id="jobs" inputmode="numeric" min="0" step="1" placeholder="e.g. 12"></div>
+                <label for="jobs">Jobs per month
+                  <span class="hint" id="h-jobs">Roughly how many of these you do</span>
+                  <div class="field"><input type="number" id="jobs" inputmode="numeric" min="0" step="1" placeholder="e.g. 12" aria-describedby="h-jobs e-jobs"></div>
+                  <span class="ferr" id="e-jobs" aria-live="polite"></span>
                 </label>
-                <label>What profit margin are you aiming for? (%)
-                  <span class="hint">The margin you actually want to keep</span>
-                  <div class="field"><input class="pad-r" type="number" id="target" inputmode="decimal" min="0" step="1" placeholder="e.g. 25" value="25"><span class="post">%</span></div>
+                <label for="target">What profit margin are you aiming for? (%)
+                  <span class="hint" id="h-target">The margin you actually want to keep (most shops aim 10–40%)</span>
+                  <div class="field"><input class="pad-r" type="number" id="target" inputmode="decimal" min="0" max="80" step="1" placeholder="e.g. 25" value="25" aria-describedby="h-target e-target"><span class="post">%</span></div>
+                  <span class="ferr" id="e-target" aria-live="polite"></span>
                 </label>
               </div>
 
               <button type="submit" class="btn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="20" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="4"/><line x1="12" y1="20" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="4"/><line x1="20" y1="20" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="4"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="20" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="4"/><line x1="12" y1="20" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="4"/><line x1="20" y1="20" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="4"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
                 Show my true margin
               </button>
               <p class="note">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Nothing is saved. Nothing is sent. The math runs on your phone.
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Your job numbers aren't saved or sent. The math runs on your device.
               </p>
             </form>
           </div>
         </div>
 
         <!-- RESULT -->
-        <div id="result">
+        <div id="result" aria-live="polite">
           <div class="card result-card">
             <p class="rhead" id="rhead">You're aiming for 25%. You're actually making 20%.</p>
             <div class="bignum tnum" id="perYear">$0</div>
@@ -396,6 +420,8 @@
             <div class="gapline" id="gapline">
               A <b id="gMarkup">25%</b> markup is only a <b id="gMargin">20%</b> margin. To actually hit the <b id="gWant">25%</b> margin you're aiming for, you'd need to charge <b id="gExtra">$0</b> more on this job.
             </div>
+
+            <p class="assume" id="assume"></p>
           </div>
 
           <div class="offer" id="offer">
@@ -403,18 +429,27 @@
             <p id="offerP">Proposal templates, a scope checklist, the markup-to-margin calculator, follow-up scripts, and a bonus price-raise script. So your next bid keeps what you meant to keep.</p>
             <p class="price"><span class="amt">$97</span> <span class="sep">·</span> one time <span class="sep">·</span> Instant download</p>
             <a class="buy" id="buyBtn" href="https://buy.stripe.com/cNi00i4eC2nT8h477U0kE03">Get the Bid-to-Win Kit
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <p class="guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><polyline points="9 12 11 14 15 10"/></svg>Use the kit on your next 3 bids within 60 days. If it doesn't add at least $500 in margin across them, email us for a full refund — and keep the kit.</p>
+            <p class="guarantee"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><polyline points="9 12 11 14 15 10"/></svg>Backed by the $500 guarantee — refund if it doesn't add $500 across your next 3 bids.</p>
           </div>
 
           <div class="restart-wrap">
-            <button class="restart" id="restart">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            <button class="restart" id="restart" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
               Run it again with different numbers
             </button>
           </div>
         </div>
+      </div>
+
+      <div class="hero-extra">
+        <p class="assure"><b>No email required.</b> Your numbers aren't saved or sent. Works on your phone.</p>
+        <ol class="steps">
+          <li><span class="n">01</span><span>Enter one job you'd actually bid.</span></li>
+          <li><span class="n">02</span><span>See the margin you really make vs. the one you're aiming for.</span></li>
+          <li><span class="n">03</span><span>See what the gap costs you across a year.</span></li>
+        </ol>
       </div>
     </div>
   </section>
@@ -436,6 +471,18 @@
       <div class="stack-row"><span class="si">6</span><div><b>Quick-start guide</b><span>Run the whole kit on your next 5 bids. No fluff.</span></div></div>
     </div>
 
+    <p class="peek-lead">A look inside — the actual quick-start guide that comes with the download:</p>
+    <div class="peek">
+      <figure>
+        <img src="assets/kit/kit-guide-1.jpg" width="640" height="828" loading="lazy" decoding="async" alt="Page one of the Bid-to-Win Kit guide: 'markup is not margin' explained, a table showing a 25% markup is only a 20% margin, and the list of seven files included.">
+        <figcaption>Quick-start guide — page 1</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/kit/kit-guide-2.jpg" width="640" height="828" loading="lazy" decoding="async" alt="Page two of the Bid-to-Win Kit guide: how to use each file in the kit.">
+        <figcaption>Quick-start guide — page 2</figcaption>
+      </figure>
+    </div>
+
     <div class="guarantee-box">
       <div class="seal"><span class="n">$500</span><span class="l">or refund</span></div>
       <div>
@@ -450,7 +497,7 @@
         <span class="sm">Instant download · Opens in Word/Excel and Google Docs/Sheets</span>
       </div>
       <a class="buy" id="buyBtn2" href="https://buy.stripe.com/cNi00i4eC2nT8h477U0kE03">Get the Bid-to-Win Kit
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <p class="buy-note">No subscription. No sales call. Yours to keep.</p>
     </div>
@@ -458,16 +505,16 @@
 
   <!-- ---------- FAQ ---------- -->
   <section class="section">
-    <div class="section-head" style="margin-bottom:26px">
-      <h2 class="kit-h" style="font-size:clamp(25px,3vw,31px)">Questions</h2>
+    <div class="section-head" style="margin-bottom:24px">
+      <h2 class="kit-h" style="font-size:clamp(24px,3vw,30px)">Questions</h2>
     </div>
     <div class="faq">
-      <details><summary>Is this a subscription?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>No. One payment of $97, yours to keep. No recurring charges.</p></details>
-      <details><summary>Do I need special software?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>No. The documents open in Microsoft Word and Excel, or free in Google Docs and Google Sheets. Just upload them to Google Drive.</p></details>
-      <details><summary>I'm not an electrician. Does it still work?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Yes. It's built for owner-operated electrical, HVAC, and plumbing shops. The pricing math and templates work for any of the three.</p></details>
-      <details><summary>What if it doesn't help?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Use the kit on your next 3 bids within 60 days. If it doesn't add at least $500 in margin, email us for a full refund and keep the kit.</p></details>
-      <details><summary>How do I get it?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Instant download right after checkout. No waiting, no sales call.</p></details>
-      <details><summary>Questions before you buy?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Email <a href="mailto:fullmarginbids@gmail.com">fullmarginbids@gmail.com</a>. We read every one.</p></details>
+      <details><summary>Is this a subscription?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>No. One payment of $97, yours to keep. No recurring charges.</p></details>
+      <details><summary>Do I need special software?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>No. The documents open in Microsoft Word and Excel, or free in Google Docs and Google Sheets. Just upload them to Google Drive.</p></details>
+      <details><summary>I'm not an electrician. Does it still work?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Yes. It's built for owner-operated electrical, HVAC, and plumbing shops. The pricing math and templates work for any of the three.</p></details>
+      <details><summary>What if it doesn't help?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Use the kit on your next 3 bids within 60 days. If it doesn't add at least $500 in margin, email us for a full refund and keep the kit.</p></details>
+      <details><summary>How do I get it?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Instant download right after checkout. No waiting, no sales call.</p></details>
+      <details><summary>Questions before you buy?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary><p>Email <a href="mailto:fullmarginbids@gmail.com">fullmarginbids@gmail.com</a>. We read every one.</p></details>
     </div>
   </section>
 </div>
@@ -476,7 +523,7 @@
   <div class="foot-in">
     <div>
       <div class="foot-brand"><span class="mk"></span>Full&nbsp;<span>Margin</span></div>
-      <div class="foot-fine" style="margin-top:12px">We count anonymous page activity to improve this tool. No personal data, no ads, no third-party trackers.</div>
+      <div class="foot-fine" style="margin-top:12px">This page keeps an anonymous, on-device tally of activity (stored only in your browser) so we can see which parts help. No accounts, no personal data, no ads, no third-party trackers, nothing sent to a server.</div>
     </div>
     <div class="foot-meta">
       <div id="addr">PO Box 18, Novelty, OH 44072</div>
@@ -488,9 +535,11 @@
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
-  // ---- Full Margin first-party analytics (cookieless, no PII, no network until SINK set) ----
+  var FIELDS=["hours","rate","materials","overhead","markup","jobs","target"];
+
+  // ---- Full Margin first-party analytics (cookieless, no PII, on-device only until SINK set) ----
   var FM=(function(){
-    var SINK="";  // set to a free counter/pixel base URL later; blank = store locally only
+    var SINK="";  // blank = store locally only; no network request is made
     var KEY="fm_events_v1";
     function load(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
     function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
@@ -511,10 +560,14 @@
 
   // calc_start fires once when the user first edits any input
   var started=false;
-  ["hours","rate","materials","overhead","markup","jobs","target"].forEach(function(id){
+  FIELDS.forEach(function(id){
     var el=$(id); if(el){el.addEventListener("focus",function(){if(!started){started=true;FM.track("calc_start")}});}
   });
-  // offer_view fires once when the kit section is reached (IntersectionObserver + scroll fallback)
+  // clear a field's error as soon as the user edits it
+  FIELDS.forEach(function(id){
+    var el=$(id); if(el){el.addEventListener("input",function(){clearError(id);});}
+  });
+  // offer_view fires once when the kit section is reached
   (function(){var k=$("kit"); if(!k) return; var seen=false;
     function fire(){if(!seen){seen=true;FM.track("offer_view");window.removeEventListener("scroll",onScroll);}}
     function onScroll(){var r=k.getBoundingClientRect();if(r.top < (window.innerHeight||document.documentElement.clientHeight)*0.85){fire();}}
@@ -524,81 +577,117 @@
   // buy_click on either buy button
   ["buyBtn","buyBtn2"].forEach(function(id){var b=$(id);if(b){b.addEventListener("click",function(){FM.track("buy_click");});}});
 
-  var money=function(n){
-    return '$'+Math.round(n).toLocaleString('en-US');
-  };
+  var money=function(n){ return '$'+Math.round(n).toLocaleString('en-US'); };
   var pct=function(n){return (Math.round(n*10)/10)+'%'};
 
-  $('form').addEventListener('submit',function(e){
-    e.preventDefault();
-    var hours=parseFloat($('hours').value)||0;
-    var rate=parseFloat($('rate').value)||0;
-    var materials=parseFloat($('materials').value)||0;
-    var overhead=parseFloat($('overhead').value)||0;
-    var markup=parseFloat($('markup').value)||0;
-    var jobs=parseFloat($('jobs').value)||0;
-    var target=parseFloat($('target').value)||0;
+  function clearError(id){
+    var e=$("e-"+id); if(e) e.textContent="";
+    var inp=$(id); if(inp){inp.classList.remove("invalid");inp.setAttribute("aria-invalid","false");}
+  }
+  function clearAllErrors(){ FIELDS.forEach(clearError); }
+  function setError(id,msg){
+    var e=$("e-"+id); if(e) e.textContent=msg;
+    var inp=$(id); if(inp){inp.classList.add("invalid");inp.setAttribute("aria-invalid","true");}
+  }
+
+  // Pure, testable validate + compute. Returns {ok, errors, values}. Exposed for tests.
+  function fmValidateCompute(inp){
+    var errors={};
+    function parse(key,o){
+      var raw=(inp[key]==null?"":String(inp[key]).trim());
+      if(raw===""){errors[key]=o.req; return NaN;}
+      var n=Number(raw);
+      if(!isFinite(n)){errors[key]="Enter a valid number"; return NaN;}
+      if(o.gt!=null && n<=o.gt){errors[key]=o.gtMsg; return NaN;}
+      if(o.min!=null && n<o.min){errors[key]=o.minMsg||"Can\u2019t be negative"; return NaN;}
+      if(o.max!=null && n>o.max){errors[key]=o.maxMsg||("Must be "+o.max+" or less"); return NaN;}
+      return n;
+    }
+    var hours=parse("hours",{gt:0,req:"Enter the job\u2019s hours",gtMsg:"Hours must be more than 0"});
+    var rate=parse("rate",{gt:0,req:"Enter your hourly cost",gtMsg:"Rate must be more than 0"});
+    var materials=parse("materials",{min:0,req:"Enter materials (0 if none)"});
+    var overhead=parse("overhead",{min:0,max:100,req:"Enter overhead %",maxMsg:"Use 0\u2013100"});
+    var markup=parse("markup",{min:0,max:1000,req:"Enter your markup %"});
+    var jobs=parse("jobs",{gt:0,req:"Enter jobs per month",gtMsg:"Must be at least 1"});
+    var target=parse("target",{gt:0,max:80,req:"Enter a target margin",gtMsg:"Must be more than 0",maxMsg:"Above 80% isn\u2019t realistic \u2014 try 10\u201340"});
+    if(Object.keys(errors).length) return {ok:false,errors:errors};
 
     var labor=hours*rate;
     var direct=labor+materials;
     var cost=direct*(1+overhead/100);          // true job cost incl overhead
     var price=cost*(1+markup/100);             // what they charge
     var realMargin=price>0?((price-cost)/price*100):0;  // true margin %
-    // price needed to ACTUALLY earn THEIR target margin (guard unrealistic targets >=90%)
-    var targetPrice = target>=90 ? price : (target<100 ? cost/(1-target/100) : price);
-    var perJob = targetPrice - price;          // money left on table per job
-    var onTarget = perJob<=0;                   // already hitting target
-    if(onTarget) perJob=0;
-    var perYear = perJob*jobs*12;
+    var targetPrice=cost/(1-target/100);       // price needed for target margin (target<=80, safe)
+    var perJob=targetPrice-price;              // money left on table per job
+    var onTarget=perJob<=0; if(onTarget) perJob=0;
+    var perYear=perJob*jobs*12;
+    return {ok:true,errors:{},values:{
+      hours:hours,rate:rate,materials:materials,overhead:overhead,markup:markup,jobs:jobs,target:target,
+      cost:cost,price:price,realMargin:realMargin,targetPrice:targetPrice,perJob:perJob,onTarget:onTarget,perYear:perYear
+    }};
+  }
+  window.fmValidateCompute=fmValidateCompute;
+
+  $('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    clearAllErrors();
+    var raw={}; FIELDS.forEach(function(id){ raw[id]=$(id).value; });
+    var res=fmValidateCompute(raw);
+    if(!res.ok){
+      var first=null;
+      FIELDS.forEach(function(id){ if(res.errors[id]){ setError(id,res.errors[id]); if(!first) first=id; } });
+      FM.track("calc_invalid");
+      if(first && $(first)) $(first).focus();
+      return;
+    }
+    var v=res.values;
+    var markup=v.markup, target=v.target, realMargin=v.realMargin, perJob=v.perJob, perYear=v.perYear, jobs=v.jobs, onTarget=v.onTarget;
     FM.track("calc_complete");
     FM.track(onTarget ? "result_ontarget" : "result_loss");
 
-    $('rCost').textContent=money(cost);
-    $('rPrice').textContent=money(price);
+    $('rCost').textContent=money(v.cost);
+    $('rPrice').textContent=money(v.price);
     $('rTarget').textContent=pct(target);
     $('rReal').textContent=pct(realMargin);
     $('rPerJob').textContent=money(perJob);
-    $('perYear').textContent=money(perYear);
 
     // ---- visual margin comparison (renders the already-computed numbers; no math change) ----
     var cTargetEl=$('cTarget'), cRealEl=$('cReal'), fillT=$('cFillTarget'), fillR=$('cFillReal');
-    if(cTargetEl&&cRealEl&&fillT&&fillR){
-      var clamp=function(v){return Math.max(0,Math.min(100,v));};
-      var scaleMax=Math.max(target, realMargin, 1);
-      cTargetEl.textContent=pct(target);
-      cRealEl.textContent=pct(realMargin);
-      // widen on next frame so the CSS transition animates
-      fillT.style.width='0%'; fillR.style.width='0%';
-      requestAnimationFrame(function(){
-        fillT.style.width=clamp(target/scaleMax*100)+'%';
-        fillR.style.width=clamp(realMargin/scaleMax*100)+'%';
-      });
-    }
+    var clamp=function(x){return Math.max(0,Math.min(100,x));};
+    var scaleMax=Math.max(target, realMargin, 1);
+    cTargetEl.textContent=pct(target);
+    cRealEl.textContent=pct(realMargin);
+    fillT.style.width='0%'; fillR.style.width='0%';
+    requestAnimationFrame(function(){
+      fillT.style.width=clamp(target/scaleMax*100)+'%';
+      fillR.style.width=clamp(realMargin/scaleMax*100)+'%';
+    });
 
     var big=$('perYear');
     var realCell=$('rReal');
     var perJobCell=$('rPerJob');
     if(onTarget){
-      // Honest on-target path: no invented loss
       big.classList.add('good');
+      big.textContent=pct(realMargin);
       realCell.classList.remove('warn');
       perJobCell.classList.remove('warn');
-      if(cRealEl){cRealEl.classList.remove('warn');cRealEl.classList.add('good');}
-      if(fillR){fillR.classList.add('good');}
+      cRealEl.classList.remove('warn'); cRealEl.classList.add('good');
+      fillR.classList.add('good');
       $('rhead').textContent="You're aiming for "+pct(target)+". You're actually making "+pct(realMargin)+".";
-      $('perYearSub').textContent="You're on target.";
+      $('perYearSub').textContent="You're on target — this pricing isn't leaving money behind.";
       $('gapline').className='gapline good';
       $('gapline').innerHTML="Your "+pct(markup)+" markup gives you a "+pct(realMargin)+" margin, which meets the "+pct(target)+" you're aiming for. No gap here.";
       $('offerH').textContent="Win more bids at this margin.";
       $('offerP').textContent="You're priced right. The Bid-to-Win Kit helps you close more of these jobs without discounting: proposal templates, a scope checklist, follow-up scripts, and a bonus price-raise script.";
     }else{
       big.classList.remove('good');
+      big.textContent=money(perYear);
       realCell.classList.add('warn');
       perJobCell.classList.add('warn');
-      if(cRealEl){cRealEl.classList.add('warn');cRealEl.classList.remove('good');}
-      if(fillR){fillR.classList.remove('good');}
+      cRealEl.classList.add('warn'); cRealEl.classList.remove('good');
+      fillR.classList.remove('good');
       $('rhead').textContent="You're aiming for "+pct(target)+". You're actually making "+pct(realMargin)+".";
-      $('perYearSub').textContent="That's "+money(perYear)+" a year"+(jobs>0?" at "+jobs+" jobs a month.":".");
+      $('perYearSub').textContent="Estimated margin left on the table in a year, if this job is typical of the "+jobs+" you bid each month.";
       $('gapline').className='gapline';
       $('gMarkup').textContent=pct(markup);
       $('gMargin').textContent=pct(realMargin);
@@ -608,6 +697,8 @@
       $('offerH').textContent="The Bid-to-Win Kit fixes this.";
       $('offerP').textContent="Proposal templates, a scope checklist, the markup-to-margin calculator, follow-up scripts, and a bonus price-raise script. So your next bid keeps what you meant to keep.";
     }
+
+    $('assume').innerHTML="<b>How this is figured.</b> Job cost = labor (hours \u00d7 your cost per hour) + materials, plus your overhead %. Price = cost + your markup. Margin = profit \u00f7 price. The yearly figure is an estimate that assumes this job is typical of the "+jobs+" you bid each month.";
 
     $('calc').style.display='none';
     $('result').style.display='block';
